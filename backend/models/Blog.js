@@ -6,6 +6,9 @@ const BlogSchema = new mongoose.Schema({
     },
     blogText: {
         type: String
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, ref: "User"
     }
 })
 

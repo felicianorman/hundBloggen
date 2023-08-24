@@ -5,11 +5,13 @@ exports.createPost = async (req, res) => {
         const {
             title,
             blogText,
+            userId
         } = req.body;
 
         const newPost = await Blog.create({
             title: title,
-            blogText: blogText
+            blogText: blogText,
+            userId: userId
         })
 
         return res.json(newPost)
