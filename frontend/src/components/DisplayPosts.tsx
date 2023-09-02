@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/blogService";
 import { IBlog } from "../models/IBlogs";
-import "../scss/Homepage.scss";
+import "../scss/AllPosts.scss";
 
 export const DisplayPosts = () => {
   const [displayPosts, setDisplayPosts] = useState<IBlog[]>([]);
@@ -21,7 +21,7 @@ export const DisplayPosts = () => {
         <div className="blog--container">
           <h2>{post.title}</h2>
           <p>{post.blogText}</p>
-          <span>{post.userId}</span>
+          <span>Skriven av: {post.userId}</span>
         </div>
       ))}
     </>

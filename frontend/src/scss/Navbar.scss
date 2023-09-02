@@ -1,0 +1,18 @@
+nav {
+    display: flex;
+    height: 8vh;
+    justify-content: space-evenly;
+    background-color: #e9e5e7;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  
+    li {
+      list-style-type: none;
+      font-size: 0.9em;
+      color: #4d4c60;
+    }
+  }
+  
