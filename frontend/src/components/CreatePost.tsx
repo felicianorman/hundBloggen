@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IBlog } from "../models/IBlogs";
-import "../scss/Homepage.scss";
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
+import '../scss/NewPost.scss'
 
 export const CreatePost = () => {
   const { register, handleSubmit, formState, getValues } = useForm<IBlog>({
@@ -47,7 +47,7 @@ export const CreatePost = () => {
     setNewTitle(e.target.value);
   }
 
-  const blogText = (e: ChangeEvent<HTMLInputElement>) => {
+  const blogText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setNewText(e.target.value);
   }
 
@@ -65,7 +65,7 @@ export const CreatePost = () => {
         <input type="text" {...register("title")} onChange={blogTitle}></input>
 
         <label>Text</label>
-        <input type="text" {...register("blogText")} onChange={blogText}></input>
+        <textarea {...register("blogText")} onChange={blogText}></textarea>
 
         <label>User</label>
         <input type="text" {...register("userId")} onChange={blogId}></input>
