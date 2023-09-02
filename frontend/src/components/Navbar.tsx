@@ -8,6 +8,7 @@ export const Navbar = () => {
             <li><Link to={'/'}>Hem</Link></li>
             <li><Link to={'/blogs'}>Bloggar</Link></li>
             <li><Link to={'/new'}>Nytt inlägg</Link></li>
+            <li><Link to={'/users'}>Användare</Link></li>
         </ul>
         </nav>
 </>)
