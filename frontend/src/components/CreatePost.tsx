@@ -64,7 +64,11 @@ export const CreatePost = () => {
       return
     }
     else {
-      console.log(e.target.files[0])
+      /**
+       * Argument of type 'File' is not assignable to parameter of type 'SetStateAction<null>'.
+  Type 'File' provides no match for the signature '(prevState: null): null
+       */
+      setBlogImg(e.target.files[0])
     }
 
   }
