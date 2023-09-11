@@ -9,6 +9,9 @@ const BlogSchema = new mongoose.Schema({
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, ref: "User"
+    },
+    blogImg: {
+        type: String
     }
 })
 

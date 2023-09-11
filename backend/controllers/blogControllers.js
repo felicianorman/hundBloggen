@@ -1,17 +1,27 @@
 const Blog = require('../models/Blog');
+const multer = require('multer')
+const upload = multer({
+    dest: "uploads/"
+})
 
-exports.createPost = async (req, res) => {
+
+
+exports.createPost = upload.single('blogImg'), async (req, res) => {
     try {
+        console.log(req.file)
+        
         const {
             title,
             blogText,
-            userId
+            userId,
+            blogImg
         } = req.body;
 
         const newPost = await Blog.create({
             title: title,
             blogText: blogText,
-            userId: userId
+            userId: userId,
+            blogImg: blogImg
         })
 
         return res.json(newPost)

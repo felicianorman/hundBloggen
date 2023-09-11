@@ -9,7 +9,8 @@ export const CreatePost = () => {
     defaultValues: {
         title: "",
         blogText: "",
-        userId: ""
+        userId: "",
+        blogImg: null
     }
   });
 
@@ -19,7 +20,8 @@ export const CreatePost = () => {
     const formData = {
         title: getValues('title'),
         blogText: getValues('blogText'),
-        userId: getValues('userId')
+        userId: getValues('userId'),
+        blogImg: getValues('blogImg')
     }
 
     try {
@@ -30,16 +32,18 @@ export const CreatePost = () => {
         console.log(error)
     }
 
-    setNewBlogPost({title: newTitle, blogText: newText, userId: newUserId})
+    setNewBlogPost({title: newTitle, blogText: newText, userId: newUserId, blogImg: newBlogImg})
   }
 
   const [newTitle, setNewTitle] = useState("");
   const [newText, setNewText] = useState("");
   const [newUserId, setNewUserId] = useState("");
+  const [newBlogImg, setBlogImg] = useState(null)
   const [newBlogPost, setNewBlogPost] = useState<IBlog>({
     title: "",
     blogText: "",
     userId: "",
+    blogImg: null
   });
 
 
@@ -55,7 +59,17 @@ export const CreatePost = () => {
     setNewUserId(e.target.value);
   }
 
-  `*`;
+  const blogPic = (e: ChangeEvent<HTMLInputElement>) => {
+    if(!e.target.files || e.target.files.length == 0) {
+      return
+    }
+    else {
+      console.log(e.target.files[0])
+    }
+
+  }
+
+  ;
 
   return (
     <>
@@ -67,8 +81,13 @@ export const CreatePost = () => {
         <label>Text</label>
         <textarea {...register("blogText")} onChange={blogText}></textarea>
 
+        <label>Bild</label>
+        <input type="file" {...register("blogImg")} onChange={blogPic}></input>
+
         <label>User</label>
         <input type="text" {...register("userId")} onChange={blogId}></input>
+
+
         <button type="submit">Submit</button>
       </form>
       <div className="blog--container">
