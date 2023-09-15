@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/blogService";
 import { IBlog } from "../models/IBlogs";
 import "../scss/AllPosts.scss";
+import '../../../backend/uploads/2023-09-15T17-31-14.770ZVaccination_Loke.png'
 
 export const DisplayPosts = () => {
   const [displayPosts, setDisplayPosts] = useState<IBlog[]>([]);
@@ -21,6 +22,7 @@ export const DisplayPosts = () => {
         <div className="blog--container">
           <h2>{post.title}</h2>
           <p>{post.blogText}</p>
+          <img src={post.blogImg && post.blogImg}/>
           <span>Skriven av: {post.userId}</span>
         </div>
       ))}

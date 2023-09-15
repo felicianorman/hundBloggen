@@ -17,12 +17,12 @@ export const CreatePost = () => {
   const {isSubmitting } = formState;
   const { errors } = formState;
   const onSubmit: SubmitHandler<IBlog> = async() => {
-    const formData = {
-        title: getValues('title'),
-        blogText: getValues('blogText'),
-        userId: getValues('userId'),
-        blogImg: getValues('blogImg')
-    }
+    const formData = new FormData()
+
+    formData.append("title", getValues('title'))
+    formData.append("blogText", getValues("blogText"))
+    formData.append("userId", getValues("userId"))
+    formData.append("blogImg", (getValues("blogImg") as any)[0])
 
     try {
         const res = await axios.post<IBlog>('http://localhost:5002/api/v1/blogs',
@@ -38,7 +38,7 @@ export const CreatePost = () => {
   const [newTitle, setNewTitle] = useState("");
   const [newText, setNewText] = useState("");
   const [newUserId, setNewUserId] = useState("");
-  const [newBlogImg, setBlogImg] = useState(null)
+  const [newBlogImg, setBlogImg] = useState<File>()
   const [newBlogPost, setNewBlogPost] = useState<IBlog>({
     title: "",
     blogText: "",
@@ -64,10 +64,6 @@ export const CreatePost = () => {
       return
     }
     else {
-      /**
-       * Argument of type 'File' is not assignable to parameter of type 'SetStateAction<null>'.
-  Type 'File' provides no match for the signature '(prevState: null): null
-       */
       setBlogImg(e.target.files[0])
     }
 
@@ -97,6 +93,7 @@ export const CreatePost = () => {
       <div className="blog--container">
         <h2> {newBlogPost.title}</h2>
         <p>{newBlogPost.blogText}</p>
+        <img src={newBlogPost.blogImg}></img>
         <span> {newBlogPost.userId}</span>
       </div>
     </>
